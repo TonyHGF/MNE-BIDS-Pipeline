@@ -2,7 +2,6 @@
 
 This repository contains a lightweight wrapper around the official
 MNE-BIDS and MNE-BIDS-Pipeline tools for the in-house BrainVision EEG data.
-It does not reimplement preprocessing, QC, caching, or report generation.
 
 ## Data Layout
 

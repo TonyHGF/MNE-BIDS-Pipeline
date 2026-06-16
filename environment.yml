@@ -1,0 +1,13 @@
+name: eeg-preprocessing
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - mne>=1.8,<1.12
+  - mne-bids>=0.15,<0.19
+  - mne-bids-pipeline>=1.9,<1.11

@@ -19,23 +19,8 @@ Generated BIDS data and derivatives are stored under `/public`:
 /public/home/hugf2022/motor/in-house/20260616_hgf_bids/derivatives/mne-bids-pipeline
 ```
 
-The source inspection found five BrainVision recordings, treated as one
-subject, one session, and five BIDS runs:
-
-```text
-sub-01/ses-20260616/task-motor/run-01..05
-```
-
-The recordings contain 16 EEG channels and three motion channels:
-
-```text
-EEG:  Fp1 Fz F3 F4 F7 F8 Cz C3 C4 T7 T8 Pz P3 P4 O1 O2
-Misc: x_dir y_dir z_dir
-```
-
-Sampling frequency is 250 Hz. Each run contains `Comment/11`; `trial_5`
-also contains BrainVision `LostSamples` segment annotations, which are
-preserved and reported during inspection.
+Run-specific inspection results are written under `reports/` and should be
+treated as generated records, not source code.
 
 ## Environment
 
@@ -137,17 +122,7 @@ logs/%x_%j.out
 logs/%x_%j.err
 ```
 
-The latest completed preprocessing job was:
-
-```text
-job: 3677836
-partition: bme_cpu
-resources: 2 CPU, 12G memory
-state: COMPLETED, exit code 0:0
-elapsed: 00:01:12
-```
-
-## Current Preprocessing Result
+## Preprocessing Configuration
 
 The BIDS conversion expands each run's single start marker into periodic trial
 events using the recorded task structure:
@@ -156,13 +131,6 @@ events using the recorded task structure:
 2 s fixation + 4 s task + 8 s break
 left and right hand once per cycle
 10 cycles per run
-```
-
-This produces 20 events per run and 100 events total:
-
-```text
-left_hand:  50 events
-right_hand: 50 events
 ```
 
 Epochs are segmented as fixation plus task:
@@ -185,45 +153,17 @@ Fp1 as a proxy EOG channel
 500 uV EEG peak-to-peak rejection for ICA fitting and final cleaned epochs
 ```
 
-Final epoch counts from the latest run:
+Run-specific epoch counts, job IDs, and QC interpretations belong in generated
+run summaries, for example:
 
 ```text
-task epochs before ICA/PTP cleaning: 100
-ICA fitting epochs after PTP rejection: 99
-ICA-reconstructed epochs before final PTP rejection: 100
-final clean epochs: 99
+reports/run_summary.md
 ```
 
-The rejected epoch is a clear high-amplitude outlier. The current automated ICA
-run did not mark any ICA component as EOG-related:
+Official MNE-BIDS-Pipeline HTML reports are written under the derivatives tree:
 
 ```text
-sub-01_ses-20260616_proc-ica_components.tsv: all 10 components are marked good
-```
-
-This means the workflow has run ICA and produced ICA-cleaning artifacts, but it
-has not automatically removed an eye-movement component. This is expected to be
-hard to validate because the recording has no dedicated EOG channel; `Fp1` is
-only a proxy. The ICA component maps and EOG score plots should be manually
-reviewed before marking components bad. Review images are saved under:
-
-```text
-/public/home/hugf2022/motor/in-house/20260616_hgf_bids/derivatives/mne-bids-pipeline/review
-```
-
-Important derivative files:
-
-```text
-/public/home/hugf2022/motor/in-house/20260616_hgf_bids/derivatives/mne-bids-pipeline/sub-01/ses-20260616/eeg/sub-01_ses-20260616_proc-ica_ica.fif
-/public/home/hugf2022/motor/in-house/20260616_hgf_bids/derivatives/mne-bids-pipeline/sub-01/ses-20260616/eeg/sub-01_ses-20260616_proc-ica_components.tsv
-/public/home/hugf2022/motor/in-house/20260616_hgf_bids/derivatives/mne-bids-pipeline/sub-01/ses-20260616/eeg/sub-01_ses-20260616_task-motor_proc-clean_epo.fif
-```
-
-HTML reports:
-
-```text
-/public/home/hugf2022/motor/in-house/20260616_hgf_bids/derivatives/mne-bids-pipeline/sub-01/ses-20260616/eeg/sub-01_ses-20260616_report.html
-/public/home/hugf2022/motor/in-house/20260616_hgf_bids/derivatives/mne-bids-pipeline/sub-average/ses-20260616/eeg/sub-average_ses-20260616_report.html
+/public/home/hugf2022/motor/in-house/20260616_hgf_bids/derivatives/mne-bids-pipeline
 ```
 
 ## Motor-Pattern Report
@@ -267,11 +207,9 @@ ERD/ERS is computed as:
 100 * (task-period band power / fixation-baseline band power - 1)
 ```
 
-Negative values indicate ERD. This report is exploratory. In the current
-single-subject result, the figures show task-related spectral changes, but not a
-clean, canonical contralateral C3/C4 mu/beta ERD pattern. Interpret it as a
-quality-control and hypothesis-generation view rather than a validated motor
-imagery biomarker.
+Negative values indicate ERD. This report is exploratory and should be treated
+as a quality-control and hypothesis-generation view rather than a validated
+motor imagery biomarker.
 
 ## Notes And Assumptions
 
@@ -280,13 +218,9 @@ imagery biomarker.
 - Task name is set to `motor`.
 - Trial events are generated from the periodic design because each recording
   only contains the run start marker.
-- EEG montage is set to `standard_1020` because the inspected EEG channel names
-  match standard 10-20 labels.
+- EEG montage is set to `standard_1020`.
 - No dedicated EOG channel was found. `Fp1` is configured as a proxy for
   automated ICA EOG detection, and any component rejection should be reviewed
   manually in the HTML report and component TSV.
-- The marker files for `trial_1` and `trial_4` declare stale `DataFile` values,
-  while their headers point to the correct EEG files. MNE reads the recordings
-  through the header files, and the original files are left unchanged.
 - Full preprocessing, QC, and report generation are handled by the official
   `mne_bids_pipeline` command.

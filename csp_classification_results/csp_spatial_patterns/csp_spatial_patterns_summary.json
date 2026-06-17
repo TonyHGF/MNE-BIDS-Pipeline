@@ -1,0 +1,199 @@
+{
+  "model": "csp_classification_results\\csp_lda_model.joblib",
+  "n_components_used": 6,
+  "note": "CSP pattern signs are arbitrary; interpret spatial distribution and large absolute weights more than positive/negative sign.",
+  "components": [
+    {
+      "component": 1,
+      "lda_weight": -1.6076753568630788,
+      "top_pattern_channels": [
+        {
+          "channel": "F8",
+          "weight": 1.339564448320669e-05,
+          "abs_weight": 1.339564448320669e-05
+        },
+        {
+          "channel": "F7",
+          "weight": -1.1595036320275902e-05,
+          "abs_weight": 1.1595036320275902e-05
+        },
+        {
+          "channel": "T7",
+          "weight": -7.797924616992808e-06,
+          "abs_weight": 7.797924616992808e-06
+        },
+        {
+          "channel": "Fp1",
+          "weight": 5.8153160635565044e-06,
+          "abs_weight": 5.8153160635565044e-06
+        },
+        {
+          "channel": "T8",
+          "weight": 4.766060813988498e-06,
+          "abs_weight": 4.766060813988498e-06
+        }
+      ]
+    },
+    {
+      "component": 2,
+      "lda_weight": 2.3830285522061683,
+      "top_pattern_channels": [
+        {
+          "channel": "Fp1",
+          "weight": 1.6632735709012225e-05,
+          "abs_weight": 1.6632735709012225e-05
+        },
+        {
+          "channel": "F8",
+          "weight": -1.2362265353364918e-05,
+          "abs_weight": 1.2362265353364918e-05
+        },
+        {
+          "channel": "F7",
+          "weight": 1.0212492701617362e-05,
+          "abs_weight": 1.0212492701617362e-05
+        },
+        {
+          "channel": "T8",
+          "weight": -6.731702585035809e-06,
+          "abs_weight": 6.731702585035809e-06
+        },
+        {
+          "channel": "F3",
+          "weight": 5.136821323231159e-06,
+          "abs_weight": 5.136821323231159e-06
+        }
+      ]
+    },
+    {
+      "component": 3,
+      "lda_weight": -1.5651924235156014,
+      "top_pattern_channels": [
+        {
+          "channel": "Fp1",
+          "weight": 1.2338046947144812e-05,
+          "abs_weight": 1.2338046947144812e-05
+        },
+        {
+          "channel": "F8",
+          "weight": 1.1731353726299845e-05,
+          "abs_weight": 1.1731353726299845e-05
+        },
+        {
+          "channel": "T7",
+          "weight": -6.253333210900776e-06,
+          "abs_weight": 6.253333210900776e-06
+        },
+        {
+          "channel": "O2",
+          "weight": -4.722291106379447e-06,
+          "abs_weight": 4.722291106379447e-06
+        },
+        {
+          "channel": "O1",
+          "weight": -4.019910431317043e-06,
+          "abs_weight": 4.019910431317043e-06
+        }
+      ]
+    },
+    {
+      "component": 4,
+      "lda_weight": 3.3948835969133224,
+      "top_pattern_channels": [
+        {
+          "channel": "O1",
+          "weight": 7.040859617113226e-06,
+          "abs_weight": 7.040859617113226e-06
+        },
+        {
+          "channel": "O2",
+          "weight": 5.186351972044325e-06,
+          "abs_weight": 5.186351972044325e-06
+        },
+        {
+          "channel": "F8",
+          "weight": -3.4238166351966468e-06,
+          "abs_weight": 3.4238166351966468e-06
+        },
+        {
+          "channel": "C3",
+          "weight": -2.5252472961843826e-06,
+          "abs_weight": 2.5252472961843826e-06
+        },
+        {
+          "channel": "Cz",
+          "weight": -2.1997065611320303e-06,
+          "abs_weight": 2.1997065611320303e-06
+        }
+      ]
+    },
+    {
+      "component": 5,
+      "lda_weight": -0.37880644805976854,
+      "top_pattern_channels": [
+        {
+          "channel": "F3",
+          "weight": -4.929402981367648e-06,
+          "abs_weight": 4.929402981367648e-06
+        },
+        {
+          "channel": "C3",
+          "weight": 4.8817160879693545e-06,
+          "abs_weight": 4.8817160879693545e-06
+        },
+        {
+          "channel": "Fp1",
+          "weight": 3.307411812310489e-06,
+          "abs_weight": 3.307411812310489e-06
+        },
+        {
+          "channel": "F4",
+          "weight": 3.194621352210372e-06,
+          "abs_weight": 3.194621352210372e-06
+        },
+        {
+          "channel": "F8",
+          "weight": -2.9011174788969432e-06,
+          "abs_weight": 2.9011174788969432e-06
+        }
+      ]
+    },
+    {
+      "component": 6,
+      "lda_weight": -1.6910160223882489,
+      "top_pattern_channels": [
+        {
+          "channel": "Fp1",
+          "weight": 1.7096418024653528e-05,
+          "abs_weight": 1.7096418024653528e-05
+        },
+        {
+          "channel": "F8",
+          "weight": 7.350648082469437e-06,
+          "abs_weight": 7.350648082469437e-06
+        },
+        {
+          "channel": "O1",
+          "weight": -6.613327887522652e-06,
+          "abs_weight": 6.613327887522652e-06
+        },
+        {
+          "channel": "Pz",
+          "weight": -6.170737891997532e-06,
+          "abs_weight": 6.170737891997532e-06
+        },
+        {
+          "channel": "F7",
+          "weight": 5.155564365615094e-06,
+          "abs_weight": 5.155564365615094e-06
+        }
+      ]
+    }
+  ],
+  "outputs": {
+    "patterns_png": "csp_classification_results/csp_spatial_patterns/csp_patterns_first6.png",
+    "filters_png": "csp_classification_results/csp_spatial_patterns/csp_filters_first6.png",
+    "component_channel_weights_csv": "csp_classification_results/csp_spatial_patterns/csp_component_channel_weights.csv",
+    "summary_json": "csp_classification_results/csp_spatial_patterns/csp_spatial_patterns_summary.json"
+  }
+}

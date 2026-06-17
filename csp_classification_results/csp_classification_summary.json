@@ -1,0 +1,271 @@
+{
+  "description": "CSP + LDA classification for left/right motor execution.",
+  "input_epochs": "preprocessed_me_epochs.npy",
+  "input_labels": "preprocessed_attention_me_labels.npy",
+  "label_map": {
+    "0": "left_hand",
+    "1": "right_hand"
+  },
+  "data_shape": [
+    99,
+    16,
+    1000
+  ],
+  "train_test_split": {
+    "method": "StratifiedShuffleSplit",
+    "train_ratio": 0.8,
+    "test_ratio": 0.2,
+    "random_state": 42,
+    "n_train": 79,
+    "n_test": 20,
+    "train_counts": {
+      "left_hand": 40,
+      "right_hand": 39
+    },
+    "test_counts": {
+      "left_hand": 10,
+      "right_hand": 10
+    }
+  },
+  "model": {
+    "pipeline": "MNE CSP + sklearn LinearDiscriminantAnalysis",
+    "csp": {
+      "n_components": 6,
+      "reg": "ledoit_wolf",
+      "log": true,
+      "norm_trace": false,
+      "component_order": "mutual_info"
+    },
+    "lda": {
+      "solver": "lsqr",
+      "shrinkage": "auto"
+    }
+  },
+  "held_out_test": {
+    "accuracy": 0.85,
+    "confusion_matrix_rows_true_cols_pred": [
+      [
+        9,
+        1
+      ],
+      [
+        2,
+        8
+      ]
+    ],
+    "classification_report": {
+      "left_hand": {
+        "precision": 0.8181818181818182,
+        "recall": 0.9,
+        "f1-score": 0.8571428571428571,
+        "support": 10.0
+      },
+      "right_hand": {
+        "precision": 0.8888888888888888,
+        "recall": 0.8,
+        "f1-score": 0.8421052631578947,
+        "support": 10.0
+      },
+      "accuracy": 0.85,
+      "macro avg": {
+        "precision": 0.8535353535353536,
+        "recall": 0.8500000000000001,
+        "f1-score": 0.849624060150376,
+        "support": 20.0
+      },
+      "weighted avg": {
+        "precision": 0.8535353535353536,
+        "recall": 0.85,
+        "f1-score": 0.849624060150376,
+        "support": 20.0
+      }
+    },
+    "test_indices": [
+      69,
+      55,
+      33,
+      3,
+      14,
+      28,
+      40,
+      51,
+      36,
+      44,
+      84,
+      17,
+      98,
+      76,
+      20,
+      15,
+      39,
+      56,
+      13,
+      27
+    ],
+    "y_true": [
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1
+    ],
+    "y_pred": [
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1
+    ],
+    "probabilities": [
+      [
+        0.23625244314689187,
+        0.7637475568531081
+      ],
+      [
+        0.043067178021375496,
+        0.9569328219786245
+      ],
+      [
+        0.5718598863080171,
+        0.42814011369198285
+      ],
+      [
+        0.003376165433332523,
+        0.9966238345666675
+      ],
+      [
+        0.9691936811286888,
+        0.030806318871311265
+      ],
+      [
+        0.25650930796735516,
+        0.7434906920326448
+      ],
+      [
+        0.9012905952024467,
+        0.09870940479755329
+      ],
+      [
+        0.5518054433518942,
+        0.44819455664810587
+      ],
+      [
+        0.8515044270863585,
+        0.1484955729136415
+      ],
+      [
+        0.679997518591769,
+        0.3200024814082309
+      ],
+      [
+        0.8191018022204557,
+        0.18089819777954433
+      ],
+      [
+        0.04404403301192572,
+        0.9559559669880743
+      ],
+      [
+        0.7515351301560316,
+        0.24846486984396848
+      ],
+      [
+        0.5520762880714688,
+        0.4479237119285312
+      ],
+      [
+        0.9114361721041218,
+        0.08856382789587822
+      ],
+      [
+        0.01240720597120315,
+        0.9875927940287968
+      ],
+      [
+        0.11607025647027858,
+        0.8839297435297214
+      ],
+      [
+        0.6293863848801047,
+        0.37061361511989527
+      ],
+      [
+        0.035407547797211,
+        0.964592452202789
+      ],
+      [
+        0.016611616705512366,
+        0.9833883832944876
+      ]
+    ]
+  },
+  "repeated_stratified_shuffle_cv": {
+    "n_splits": 20,
+    "test_ratio": 0.2,
+    "accuracy_scores": [
+      0.85,
+      0.85,
+      0.6,
+      0.8,
+      0.65,
+      0.75,
+      0.95,
+      0.7,
+      0.65,
+      0.7,
+      0.9,
+      0.6,
+      0.85,
+      0.95,
+      0.7,
+      0.9,
+      0.85,
+      0.85,
+      0.75,
+      0.4
+    ],
+    "mean_accuracy": 0.7625,
+    "std_accuracy": 0.13943023156290105
+  },
+  "outputs": {
+    "model": "csp_classification_results/csp_lda_model.joblib",
+    "test_indices": "csp_classification_results/test_indices.npy",
+    "test_labels": "csp_classification_results/test_labels.npy",
+    "test_predictions": "csp_classification_results/test_predictions.npy",
+    "test_probabilities": "csp_classification_results/test_probabilities.npy",
+    "summary": "csp_classification_results/csp_classification_summary.json"
+  },
+  "versions": {
+    "mne": "1.8.0"
+  }
+}
